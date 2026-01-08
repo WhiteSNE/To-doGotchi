@@ -1,16 +1,297 @@
-# tamagochi
+# ✨ To DoGotchi
 
-A new Flutter project.
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web%20%7C%20Desktop-333?style=for-the-badge&logo=flutter)
 
-## Getting Started
+> To DoGotchi adalah aplikasi daftar tugas lintas platform yang menawan yang menggabungkan manajemen tugas sehari-hari dengan interaksi hewan peliharaan virtual yang menggemaskan, terinspirasi oleh Tamagotchi.
 
-This project is a starting point for a Flutter application.
+## ✨ Fitur Utama
 
-A few resources to get you started if this is your first Flutter project:
+*   **Manajemen Tugas Interaktif:** Kelola daftar tugas harian Anda dengan antarmuka yang intuitif, memungkinkan penambahan, penyelesaian, dan pelacakan tugas dengan mudah.
+*   **Sahabat Digital Tamagotchi:** Jaga hewan peliharaan virtual Anda yang menggemaskan. Kondisi hewan peliharaan (misalnya, normal, sakit, mati) dapat secara dinamis dipengaruhi oleh penyelesaian tugas Anda atau berjalannya waktu, menambah elemen gamifikasi yang unik pada produktivitas.
+*   **Visualisasi Hewan Peliharaan Dinamis:** Animasi GIF untuk hewan peliharaan (normal, sakit, mati) memberikan umpan balik visual yang menarik tentang status hewan peliharaan Anda.
+*   **Layanan Basis Data Lokal:** Mekanisme persistensi data untuk menyimpan tugas dan status hewan peliharaan Anda secara lokal, memastikan kemajuan Anda tidak hilang.
+*   **Pemberitahuan Kustom:** Integrasi layanan notifikasi untuk pengingat tugas atau pembaruan penting tentang kesejahteraan hewan peliharaan Anda.
+*   **Pengembangan Lintas Platform:** Dibangun dengan Flutter, aplikasi ini mendukung Android, iOS, Web, Linux, macOS, dan Windows dari satu basis kode.
+*   **UI yang Ramah Pengguna:** Antarmuka yang bersih dan menarik dengan layar beranda yang didedikasikan untuk tugas dan hewan peliharaan, serta layar 'Tentang' untuk informasi tambahan.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🛠️ Tumpukan Teknologi
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Kategori            | Teknologi    | Catatan                                                               |
+| :------------------ | :----------- | :-------------------------------------------------------------------- |
+| Bahasa Pemrograman  | Dart         | Bahasa inti yang digunakan untuk mengembangkan aplikasi.             |
+| Kerangka Kerja UI   | Flutter      | Kerangka kerja UI untuk membangun aplikasi lintas platform yang asli. |
+| Manajemen Status    | Provider     | Pola manajemen status umum untuk mengelola data aplikasi.             |
+| Persistensi Data    | SQLite       | Diinferensikan melalui `database_service.dart` untuk penyimpanan data lokal. |
+| Pengujian           | Flutter Test | Pengujian unit dan widget untuk memastikan kualitas dan stabilitas kode. |
+
+## 🏛️ Tinjauan Arsitektur
+
+To DoGotchi diorganisir menggunakan arsitektur modular yang umum di aplikasi Flutter, mempromosikan pemisahan masalah yang jelas untuk meningkatkan pemeliharaan dan skalabilitas.
+
+*   **Lapisan UI (`screens`, `widgets`):** Bertanggung jawab untuk menyajikan antarmuka pengguna, terdiri dari widget-widget Flutter yang dapat dibuat dan digunakan kembali.
+*   **Lapisan Logika Bisnis (`providers`):** Mengelola status aplikasi dan menerapkan logika inti, seringkali memanfaatkan pola Provider untuk memperbarui status aplikasi secara efisien.
+*   **Lapisan Model (`models`):** Mendefinisikan struktur data untuk objek aplikasi, seperti `TaskModel`, yang memastikan konsistensi data di seluruh aplikasi.
+*   **Lapisan Layanan (`services`):** Mengabstraksi interaksi dengan layanan eksternal atau sistem, seperti `DatabaseService` untuk operasi persistensi data lokal dan `NotificationService` untuk mengelola pemberitahuan.
+
+Desain ini memastikan bahwa aplikasi dapat dengan mudah diskalakan dan diperluas dengan fitur-fitur baru, sambil mempertahankan pengalaman pengguna yang lancar dan responsif di berbagai platform yang didukung (Android, iOS, Web, Desktop).
+
+## 🚀 Memulai
+
+Ikuti langkah-langkah ini untuk mendapatkan salinan proyek yang berjalan di mesin lokal Anda untuk tujuan pengembangan dan pengujian.
+
+### Prasyarat
+
+Pastikan Anda telah menginstal Flutter SDK di sistem Anda. Anda dapat mengunduh dan menginstal Flutter dari [situs web resmi Flutter](https://flutter.dev/docs/get-started/install).
+
+### Instalasi
+
+1.  **Kloning repositori:**
+    ```bash
+    git clone https://github.com/WhiteSNE/To-doGotchi.git
+    cd To-doGotchi
+    ```
+
+2.  **Instal dependensi:**
+    Navigasikan ke direktori proyek dan dapatkan dependensi.
+    ```bash
+    flutter pub get
+    ```
+
+3.  **Jalankan aplikasi:**
+    Pilih perangkat target Anda (emulator, perangkat fisik, atau browser web) dan jalankan aplikasi.
+    ```bash
+    flutter run
+    ```
+    Untuk pengembangan web:
+    ```bash
+    flutter run -d chrome
+    ```
+
+## 📂 Struktur File
+
+```
+/
+├── .gitignore
+├── .metadata
+├── .vscode
+│   └── settings.json
+├── README.md
+├── analysis_options.yaml
+├── android
+│   ├── .gitignore
+│   ├── app
+│   │   ├── build.gradle.kts
+│   │   └── src
+│   │       ├── debug
+│   │       │   └── AndroidManifest.xml
+│   │       ├── main
+│   │       │   ├── AndroidManifest.xml
+│   │       │   ├── kotlin
+│   │       │   │   └── com
+│   │       │   │           └── tamagochi
+│   │       │   │               └── MainActivity.kt
+│   │       │   └── res
+│   │       │       ├── drawable-v21
+│   │       │       │   └── launch_background.xml
+│   │       │       ├── drawable
+│   │       │       │   └── launch_background.xml
+│   │       │       ├── mipmap-hdpi
+│   │       │       │   └── ic_launcher.png
+│   │       │       ├── mipmap-mdpi
+│   │       │       │   └── ic_launcher.png
+│   │       │       ├── mipmap-xhdpi
+│   │       │       │   └── ic_launcher.png
+│   │       │       ├── mipmap-xxhdpi
+│   │       │       │   └── ic_launcher.png
+│   │       │       ├── mipmap-xxxhdpi
+│   │       │       │   └── ic_launcher.png
+│   │       │       ├── values-night
+│   │       │       │   └── styles.xml
+│   │       │       └── values
+│   │       │           └── styles.xml
+│   │       └── profile
+│   │           └── AndroidManifest.xml
+│   ├── build.gradle.kts
+│   ├── gradle.properties
+│   ├── gradle
+│   │   └── wrapper
+│   │       └── gradle-wrapper.properties
+│   └── settings.gradle.kts
+├── assets
+│   ├── pet_dead.gif
+│   ├── pet_normal.gif
+│   └── pet_sick.gif
+├── ios
+│   ├── .gitignore
+│   ├── Flutter
+│   │   ├── AppFrameworkInfo.plist
+│   │   ├── Debug.xcconfig
+│   │   └── Release.xcconfig
+│   ├── Runner.xcodeproj
+│   │   ├── project.pbxproj
+│   │   ├── project.xcworkspace
+│   │   │   ├── contents.xcworkspacedata
+│   │   │   └── xcshareddata
+│   │   │       ├── IDEWorkspaceChecks.plist
+│   │   │       └── WorkspaceSettings.xcsettings
+│   │   └── xcshareddata
+│   │       └── xcschemes
+│   │           └── Runner.xcscheme
+│   ├── Runner.xcworkspace
+│   │   ├── contents.xcworkspacedata
+│   │   └── xcshareddata
+│   │       ├── IDEWorkspaceChecks.plist
+│   │       └── WorkspaceSettings.xcsettings
+│   ├── Runner
+│   │   ├── AppDelegate.swift
+│   │   ├── Assets.xcassets
+│   │   │   ├── AppIcon.appiconset
+│   │   │   │   ├── Contents.json
+│   │   │   │   ├── Icon-App-1024x1024@1x.png
+│   │   │   │   ├── Icon-App-20x20@1x.png
+│   │   │   │   ├── Icon-App-20x20@2x.png
+│   │   │   │   ├── Icon-App-20x20@3x.png
+│   │   │   │   ├── Icon-App-29x29@1x.png
+│   │   │   │   ├── Icon-App-29x29@2x.png
+│   │   │   │   ├── Icon-App-29x29@3x.png
+│   │   │   │   ├── Icon-App-40x40@1x.png
+│   │   │   │   ├── Icon-App-40x40@2x.png
+│   │   │   │   ├── Icon-App-40x40@3x.png
+│   │   │   │   ├── Icon-App-60x60@2x.png
+│   │   │   │   ├── Icon-App-60x60@3x.png
+│   │   │   │   ├── Icon-App-76x76@1x.png
+│   │   │   │   ├── Icon-App-76x76@2x.png
+│   │   │   │   └── Icon-App-83.5x83.5@2x.png
+│   │   │   └── LaunchImage.imageset
+│   │   │       ├── Contents.json
+│   │   │       ├── LaunchImage.png
+│   │   │       ├── LaunchImage@2x.png
+│   │   │       ├── LaunchImage@3x.png
+│   │   │       └── README.md
+│   │   ├── Base.lproj
+│   │   │   ├── LaunchScreen.storyboard
+│   │   │   └── Main.storyboard
+│   │   ├── Info.plist
+│   │   └── Runner-Bridging-Header.h
+│   └── RunnerTests
+│       └── RunnerTests.swift
+├── lib
+│   ├── main.dart
+│   ├── models
+│   │   └── task_model.dart
+│   ├── providers
+│   │   └── game_provider.dart
+│   ├── screens
+│   │   ├── about_screen.dart
+│   │   └── home_screen.dart
+│   ├── services
+│   │   ├── database_service.dart
+│   │   └── notification_service.dart
+│   └── widgets
+│       ├── add_task_dialog.dart
+│       └── debug_menu.dart
+├── linux
+│   ├── .gitignore
+│   ├── CMakeLists.txt
+│   ├── flutter
+│   │   ├── CMakeLists.txt
+│   │   ├── generated_plugin_registrant.cc
+│   │   ├── generated_plugin_registrant.h
+│   │   └── generated_plugins.cmake
+│   └── runner
+│       ├── CMakeLists.txt
+│       ├── main.cc
+│       ├── my_application.cc
+│       └── my_application.h
+├── macos
+│   ├── .gitignore
+│   ├── Flutter
+│   │   ├── Flutter-Debug.xcconfig
+│   │   ├── Flutter-Release.xcconfig
+│   │   └── GeneratedPluginRegistrant.swift
+│   ├── Runner.xcodeproj
+│   │   ├── project.pbxproj
+│   │   ├── project.xcworkspace
+│   │   │   └── xcshareddata
+│   │   │       └── IDEWorkspaceChecks.plist
+│   │   └── xcshareddata
+│   │       └── xcschemes
+│   │           └── Runner.xcscheme
+│   ├── Runner.xcworkspace
+│   │   ├── contents.xcworkspacedata
+│   │   └── xcshareddata
+│   │       └── IDEWorkspaceChecks.plist
+│   ├── Runner
+│   │   ├── AppDelegate.swift
+│   │   ├── Assets.xcassets
+│   │   │   └── AppIcon.appiconset
+│   │   │       ├── Contents.json
+│   │   │       ├── app_icon_1024.png
+│   │   │       ├── app_icon_128.png
+│   │   │       ├── app_icon_16.png
+│   │   │       ├── app_icon_256.png
+│   │   │       ├── app_icon_32.png
+│   │   │       ├── app_icon_512.png
+│   │   │       └── app_icon_64.png
+│   │   ├── Base.lproj
+│   │   │   └── MainMenu.xib
+│   │   ├── Configs
+│   │   │   ├── AppInfo.xcconfig
+│   │   │   ├── Debug.xcconfig
+│   │   │   ├── Release.xcconfig
+│   │   │   └── Warnings.xcconfig
+│   │   ├── DebugProfile.entitlements
+│   │   ├── Info.plist
+│   │   ├── MainFlutterWindow.swift
+│   │   └── Release.entitlements
+│   └── RunnerTests
+│       └── RunnerTests.swift
+├── pubspec.lock
+├── pubspec.yaml
+├── test
+│   └── widget_test.dart
+├── web
+│   ├── favicon.png
+│   ├── icons
+│   │   ├── Icon-192.png
+│   │   ├── Icon-512.png
+│   │   ├── Icon-maskable-192.png
+│   │   └── Icon-maskable-512.png
+│   ├── index.html
+│   └── manifest.json
+└── windows
+    ├── .gitignore
+    ├── CMakeLists.txt
+    ├── flutter
+    │   ├── CMakeLists.txt
+    │   ├── generated_plugin_registrant.cc
+    │   ├── generated_plugin_registrant.h
+    │   └── generated_plugins.cmake
+    └── runner
+        ├── CMakeLists.txt
+        ├── Runner.rc
+        ├── flutter_window.cpp
+        ├── flutter_window.h
+        ├── main.cpp
+        ├── resource.h
+        ├── resources
+        │   └── app_icon.ico
+        ├── runner.exe.manifest
+        ├── utils.cpp
+        ├── utils.h
+        ├── win32_window.cpp
+        └── win32_window.h
+```
+
+*   **`lib/`**: Berisi kode sumber utama aplikasi Dart/Flutter. Ini adalah tempat sebagian besar logika aplikasi, antarmuka pengguna (UI), dan fungsionalitas diimplementasikan.
+    *   `models/`: Berisi definisi kelas model data yang digunakan di seluruh aplikasi (misalnya, `task_model.dart`).
+    *   `providers/`: Kelas-kelas yang mengelola status aplikasi menggunakan paket Provider, memungkinkan manajemen status yang efisien dan reaktif.
+    *   `screens/`: Direktori untuk widget tingkat layar atau halaman utama aplikasi (misalnya, `home_screen.dart`, `about_screen.dart`).
+    *   `services/`: Berisi abstraksi untuk layanan eksternal atau sistem, seperti `DatabaseService` untuk akses data dan `NotificationService` untuk pemberitahuan.
+    *   `widgets/`: Komponen UI yang dapat digunakan kembali dan lebih kecil yang membentuk bagian dari layar aplikasi (misalnya, `add_task_dialog.dart`).
+*   **`assets/`**: Menyimpan aset statis yang digunakan dalam aplikasi, seperti gambar dan GIF, termasuk animasi hewan peliharaan (`pet_dead.gif`, `pet_normal.gif`, `pet_sick.gif`).
+*   **`android/`**, **`ios/`**, **`web/`**, **`linux/`**, **`macos/`**, **`windows/`**: Direktori ini berisi file dan konfigurasi spesifik platform yang diperlukan untuk membangun dan menjalankan aplikasi di platform masing-masing.
+*   **`test/`**: Berisi file pengujian untuk aplikasi, termasuk pengujian widget untuk memastikan fungsionalitas UI yang benar.
+*   **`pubspec.yaml`**: File konfigurasi proyek Flutter yang mendeklarasikan dependensi proyek, metadata, dan aset.
